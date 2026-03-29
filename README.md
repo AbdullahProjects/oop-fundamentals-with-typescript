@@ -31,7 +31,7 @@
 
 ## 1. What is Object-Oriented Programming?
 
-**Object-Oriented Programming (OOP)** is a programming paradigm built around the concept of **objects** — self-contained units that combine **data** (attributes/properties) and **behavior** (methods/functions) together.
+**Object-Oriented Programming (OOP)** is a programming paradigm built around the concept of **objects** i.e., objects are self-contained units that combine **data** (attributes/properties/characteristics) and **behavior** (methods/functions/actions) together.
 
 Instead of writing a program as a long list of sequential instructions, OOP allows you to model your software around real-world entities. A `Car` object, for example, would have properties like `color` and `speed`, and behaviors like `accelerate()` and `brake()`.
 
