@@ -14,7 +14,6 @@
    - [Objects](#objects)
    - [Class & Object Example](#class--object-example)
    - [Advantages of OOP](#advantages-of-oop)
-   - [Inheritance (Building Block)](#inheritance-building-block)
 3. [Pillars of OOP](#3-pillars-of-oop)
    - [Abstraction](#i-abstraction)
    - [Encapsulation](#ii-encapsulation)
@@ -35,8 +34,6 @@
 
 Instead of writing a program as a long list of sequential instructions, OOP allows you to model your software around real-world entities. A `Car` object, for example, would have properties like `color` and `speed`, and behaviors like `accelerate()` and `brake()`.
 
----
-
 ### Programming Paradigms
 
 A **programming paradigm** is a fundamental style or approach to programming — a way of thinking about and structuring code. Different paradigms offer different mental models for solving problems.
@@ -51,8 +48,6 @@ The most widely used paradigms are:
 | **Declarative** | You describe *what* you want, not *how* to get it | SQL, HTML, CSS |
 
 These paradigms are not mutually exclusive — many modern languages (like TypeScript, Python, Kotlin) support **multiple paradigms** simultaneously.
-
----
 
 ### Where Does OOP Fall?
 
@@ -69,9 +64,7 @@ OOP is an **imperative, object-based paradigm** — meaning you still tell the c
 
 ## 2. Building Blocks of OOP
 
-The fundamental building blocks of OOP are **Classes**, **Objects**, and **Inheritance**. Everything in OOP revolves around these concepts — classes define structure, objects bring it to life, and inheritance lets you extend and reuse it.
-
----
+The fundamental building blocks of OOP are **Classes** and **Objects**. Everything in OOP revolves around these concepts — classes define structure, objects bring it to life, and inheritance lets you extend and reuse it.
 
 ### Classes
 
@@ -84,8 +77,6 @@ Think of a class like an **architectural blueprint** for a house. The blueprint 
 - Defines **methods** (functions/behavior) an object can perform
 - Serves as a reusable factory for creating multiple objects
 - Allocates **no memory** on its own — memory is only allocated when an object is created
-
----
 
 ### Objects
 
@@ -169,49 +160,6 @@ These are the practical benefits you gain by structuring your code around object
 
 ---
 
-### Inheritance (Building Block)
-
-**Inheritance** is the mechanism that lets a new class **acquire the properties and behaviors of an existing class**, enabling direct code reuse without duplication. It is the building block that connects classes together into meaningful hierarchies.
-
-Think of it as a **family tree** — a child inherits traits from a parent, can add their own unique traits, and can override inherited ones.
-
-In TypeScript, the `extends` keyword establishes an inheritance relationship. A full deep-dive with all inheritance types and scenarios is covered in [Pillar III — Inheritance](#iii-inheritance-in-depth).
-
-```typescript
-// Parent class (superclass / base class)
-class Vehicle {
-  constructor(public brand: string, public speed: number) {}
-
-  move(): void {
-    console.log(`${this.brand} moves at ${this.speed} km/h`);
-  }
-}
-
-// Child class (subclass / derived class) — inherits from Vehicle
-class ElectricCar extends Vehicle {
-  constructor(brand: string, speed: number, public batteryRange: number) {
-    super(brand, speed); // Call parent constructor
-  }
-
-  // Extending parent with new behavior
-  charge(): void {
-    console.log(`${this.brand} is charging. Range: ${this.batteryRange} km`);
-  }
-}
-
-const tesla = new ElectricCar("Tesla", 250, 500);
-tesla.move();   // Inherited from Vehicle: Tesla moves at 250 km/h
-tesla.charge(); // Own method: Tesla is charging. Range: 500 km
-```
-
-**🔍 Explanation:**
-- `Vehicle` is the **parent class** — defines what every vehicle can do.
-- `ElectricCar` **inherits** `brand`, `speed`, and `move()` for free — no need to rewrite them.
-- `ElectricCar` **extends** the parent by adding `batteryRange` and `charge()`.
-- `super(brand, speed)` calls the parent's constructor to initialize inherited properties.
-
----
-
 ## 3. Pillars of OOP
 
 The four pillars are the core principles that make OOP powerful. They work together to manage software complexity, promote code reuse, and improve long-term maintainability.
@@ -235,8 +183,6 @@ The four pillars are the core principles that make OOP powerful. They work toget
 **Abstraction** is the process of **hiding complex implementation details** and **exposing only the essential features** that the user needs to interact with. It focuses on **what an object does**, not **how it does it**.
 
 Think of a **TV remote** — you press the "Volume Up" button and the volume increases. You don't need to know the circuit logic, signals, or internal processing happening behind the scenes. The complexity is hidden; only the essential interface is exposed.
-
-> 💡 **Core Idea:** Abstraction is about creating a **contract** — an agreement that says _"if you use this, you are guaranteed these capabilities."_
 
 ### Abstraction in TypeScript
 
