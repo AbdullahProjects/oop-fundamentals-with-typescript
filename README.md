@@ -35,8 +35,6 @@
 
 Instead of writing a program as a long list of sequential instructions, OOP allows you to model your software around real-world entities. A `Car` object, for example, would have properties like `color` and `speed`, and behaviors like `accelerate()` and `brake()`.
 
-> 💡 **Key Idea:** OOP lets you think in terms of "things" (objects) and what they "know" (state) and "do" (behavior) — making code more intuitive, organized, and maintainable.
-
 ---
 
 ### Programming Paradigms
@@ -66,8 +64,6 @@ OOP is an **imperative, object-based paradigm** — meaning you still tell the c
 - **Procedural code doesn't scale** — As programs grow, a flat list of functions and global variables becomes impossible to manage. OOP provides structure through encapsulation and modularity.
 - **Code reuse** — Inheritance and interfaces let you write logic once and reuse it across many types.
 - **Team collaboration** — Different developers can own different classes/modules without stepping on each other.
-
-> In short: Procedural is great for small scripts. Functional shines for data pipelines and concurrency. **OOP excels at modeling complex, long-lived systems** — which is why it dominates enterprise software, game development, and application backends.
 
 ---
 
