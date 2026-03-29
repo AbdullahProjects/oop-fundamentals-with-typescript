@@ -7,21 +7,25 @@
 ## 📚 Table of Contents
 
 1. [What is Object-Oriented Programming?](#1-what-is-object-oriented-programming)
+   - [Programming Paradigms](#programming-paradigms)
+   - [Where Does OOP Fall?](#where-does-oop-fall)
 2. [Building Blocks of OOP](#2-building-blocks-of-oop)
    - [Classes](#classes)
    - [Objects](#objects)
    - [Class & Object Example](#class--object-example)
+   - [Advantages of OOP](#advantages-of-oop)
+   - [Inheritance (Building Block)](#inheritance-building-block)
 3. [Pillars of OOP](#3-pillars-of-oop)
    - [Abstraction](#i-abstraction)
    - [Encapsulation](#ii-encapsulation)
-   - [Inheritance](#iii-inheritance)
+   - [Inheritance (In Depth)](#iii-inheritance-in-depth)
      - [Types of Inheritance](#types-of-inheritance)
        - [Single Inheritance](#1-single-inheritance)
        - [Multi-level Inheritance](#2-multi-level-inheritance)
        - [Hierarchical Inheritance](#3-hierarchical-inheritance)
        - [Multiple Inheritance (via Interfaces)](#4-multiple-inheritance-via-interfaces)
    - [Polymorphism](#iv-polymorphism)
-4. [Advantages of OOP](#4-advantages-of-oop)
+3. [What's Next?](#-whats-next)
 
 ---
 
@@ -35,9 +39,41 @@ Instead of writing a program as a long list of sequential instructions, OOP allo
 
 ---
 
+### Programming Paradigms
+
+A **programming paradigm** is a fundamental style or approach to programming — a way of thinking about and structuring code. Different paradigms offer different mental models for solving problems.
+
+The most widely used paradigms are:
+
+| Paradigm | Core Idea | Example Languages |
+|---|---|---|
+| **Procedural** | Code is a sequence of step-by-step instructions (procedures/functions) executed top-to-bottom | C, Pascal, early PHP |
+| **Functional** | Computation is treated as evaluating mathematical functions — data is immutable, no side effects | Haskell, Elixir, F# |
+| **Object-Oriented** | Code is organized around objects that bundle data and behavior together | Java, C++, Python, TypeScript |
+| **Declarative** | You describe *what* you want, not *how* to get it | SQL, HTML, CSS |
+
+These paradigms are not mutually exclusive — many modern languages (like TypeScript, Python, Kotlin) support **multiple paradigms** simultaneously.
+
+---
+
+### Where Does OOP Fall?
+
+OOP is an **imperative, object-based paradigm** — meaning you still tell the computer _how_ to do things, but you structure those instructions inside objects instead of loose procedures.
+
+**Why OOP became dominant for large-scale software:**
+
+- **Real-world modeling** — Software often represents real things (Users, Orders, Products). OOP maps naturally to that.
+- **Procedural code doesn't scale** — As programs grow, a flat list of functions and global variables becomes impossible to manage. OOP provides structure through encapsulation and modularity.
+- **Code reuse** — Inheritance and interfaces let you write logic once and reuse it across many types.
+- **Team collaboration** — Different developers can own different classes/modules without stepping on each other.
+
+> In short: Procedural is great for small scripts. Functional shines for data pipelines and concurrency. **OOP excels at modeling complex, long-lived systems** — which is why it dominates enterprise software, game development, and application backends.
+
+---
+
 ## 2. Building Blocks of OOP
 
-The two fundamental building blocks of OOP are **Classes** and **Objects**. Everything in OOP revolves around these two concepts.
+The fundamental building blocks of OOP are **Classes**, **Objects**, and **Inheritance**. Everything in OOP revolves around these concepts — classes define structure, objects bring it to life, and inheritance lets you extend and reuse it.
 
 ---
 
@@ -118,6 +154,65 @@ console.log(car2.getInfo()); // BMW M3 | Speed: 120 km/h
 - `car1` and `car2` are **objects** (instances) — each is an independent entity with its own state.
 - Both objects share the same **behavior** (`accelerate`, `brake`) but maintain their own **state** (`speed`).
 - Calling `car1.accelerate()` does not affect `car2`'s speed — each object is isolated.
+
+---
+
+### Advantages of OOP
+
+These are the practical benefits you gain by structuring your code around objects:
+
+| Advantage | Description |
+|---|---|
+| **Clear structure** | Code is organized around real-world entities — easier to navigate and reason about |
+| **Maintainability** | Changes in one class don't ripple unexpectedly across unrelated parts of the codebase |
+| **Code reuse** | Inheritance and composition let you build on existing code rather than rewriting it |
+| **DRY principle** | _"Don't Repeat Yourself"_ — shared logic lives in one place (base classes, interfaces) |
+| **Scalability** | Adding new features is as simple as adding a new class — existing code stays untouched |
+| **Testability** | Objects with clear interfaces and encapsulated state are far easier to unit test in isolation |
+| **Collaboration** | Teams can work on different classes/modules independently, then compose them together |
+
+---
+
+### Inheritance (Building Block)
+
+**Inheritance** is the mechanism that lets a new class **acquire the properties and behaviors of an existing class**, enabling direct code reuse without duplication. It is the building block that connects classes together into meaningful hierarchies.
+
+Think of it as a **family tree** — a child inherits traits from a parent, can add their own unique traits, and can override inherited ones.
+
+In TypeScript, the `extends` keyword establishes an inheritance relationship. A full deep-dive with all inheritance types and scenarios is covered in [Pillar III — Inheritance](#iii-inheritance-in-depth).
+
+```typescript
+// Parent class (superclass / base class)
+class Vehicle {
+  constructor(public brand: string, public speed: number) {}
+
+  move(): void {
+    console.log(`${this.brand} moves at ${this.speed} km/h`);
+  }
+}
+
+// Child class (subclass / derived class) — inherits from Vehicle
+class ElectricCar extends Vehicle {
+  constructor(brand: string, speed: number, public batteryRange: number) {
+    super(brand, speed); // Call parent constructor
+  }
+
+  // Extending parent with new behavior
+  charge(): void {
+    console.log(`${this.brand} is charging. Range: ${this.batteryRange} km`);
+  }
+}
+
+const tesla = new ElectricCar("Tesla", 250, 500);
+tesla.move();   // Inherited from Vehicle: Tesla moves at 250 km/h
+tesla.charge(); // Own method: Tesla is charging. Range: 500 km
+```
+
+**🔍 Explanation:**
+- `Vehicle` is the **parent class** — defines what every vehicle can do.
+- `ElectricCar` **inherits** `brand`, `speed`, and `move()` for free — no need to rewrite them.
+- `ElectricCar` **extends** the parent by adding `batteryRange` and `charge()`.
+- `super(brand, speed)` calls the parent's constructor to initialize inherited properties.
 
 ---
 
@@ -624,7 +719,7 @@ console.log(`Available: ${laptop.isAvailable()}, Stock: ${laptop.stock}, Price: 
 
 ---
 
-## III. Inheritance
+## III. Inheritance (In Depth)
 
 ### What is Inheritance?
 
@@ -1239,20 +1334,6 @@ app3.start();
 
 ---
 
-## 4. Advantages of OOP
-
-| Advantage | Description |
-|---|---|
-| **Clear structure** | Code is organized around real-world entities — making it easier to reason about and navigate |
-| **Maintainability** | Changes in one class don't ripple unexpectedly across unrelated parts of the codebase |
-| **Code reuse** | Inheritance and composition let you build on existing code rather than rewriting it |
-| **DRY principle** | _"Don't Repeat Yourself"_ — shared logic lives in one place (base classes, interfaces) |
-| **Scalability** | Adding new features (new shapes, new payment providers, new loggers) is as simple as adding a new class |
-| **Testability** | Objects with clear interfaces and encapsulated state are far easier to unit test in isolation |
-| **Collaboration** | Teams can work on different classes independently, then compose them together |
-
----
-
 ## Summary
 
 ```
@@ -1266,6 +1347,31 @@ OOP in a Nutshell
 ```
 
 These four pillars work together. Abstraction defines **what** to expose. Encapsulation protects **how** data is stored. Inheritance lets you **reuse and extend**. Polymorphism allows one piece of code to **work with many types**. Master them together and you'll write software that is clean, flexible, and built to last.
+
+---
+
+## 🚀 What's Next?
+
+Now that you have a solid understanding of OOP fundamentals and its four pillars, the natural next step is to learn **how to write better OOP code** — not just correct code, but clean, scalable, and maintainable code.
+
+This leads us to two essential topics:
+
+**Design Principles** — Guidelines like _KISS_ (Keep It Simple, Stupid), _DRY_ (Don't Repeat Yourself), and _YAGNI_ (You Aren't Gonna Need It) that shape good software design habits.
+
+**SOLID Principles** — Five foundational rules specifically designed for OOP that help you write code that is easy to extend, maintain, and test:
+
+| Principle | Stands For |
+|---|---|
+| **S** | Single Responsibility Principle |
+| **O** | Open/Closed Principle |
+| **L** | Liskov Substitution Principle |
+| **I** | Interface Segregation Principle |
+| **D** | Dependency Inversion Principle |
+
+> These principles are what separate a **good OOP developer** from a **great one**. They are the bridge between knowing OOP and applying it professionally.
+
+👉 **Continue your learning here:**
+**[Design Principles & SOLID Principles with TypeScript](https://github.com/jafari-dev/oop-expert-with-typescript)**
 
 ---
 
